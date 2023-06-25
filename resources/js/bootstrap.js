@@ -34,5 +34,5 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 
     // add for local websocket
-    disableStats: true,
+    //disableStats: true,
 });

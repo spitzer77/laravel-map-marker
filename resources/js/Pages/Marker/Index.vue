@@ -64,7 +64,7 @@ export default {
         return {
             latitude: null,
             longitude: null,
-            interval: 30000, // interval for marker
+            interval: 60000, // interval for marker
             //errors_axios: null
         }
     },

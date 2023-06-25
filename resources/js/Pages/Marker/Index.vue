@@ -102,8 +102,8 @@ export default {
                 let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 let seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                if (document.getElementById("time")) {
-                    document.getElementById("time").innerHTML =
+                if (document.getElementById(elementId)) {
+                    document.getElementById(elementId).innerHTML =
                         'Time to show: ' +
                         days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
 

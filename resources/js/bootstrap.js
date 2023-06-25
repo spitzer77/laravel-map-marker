@@ -32,4 +32,7 @@ window.Echo = new Echo({
     //forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
     forceTLS: false,
     enabledTransports: ['ws', 'wss'],
+
+    // add for local websocket
+    disableStats: true,
 });

@@ -113,7 +113,7 @@ export default {
                         document.getElementById(elementId).innerHTML = "";
                     }
 
-                    if (distance < 10000) document.getElementById("time").className = 'ml-3 text-red-600';
+                    if (distance < 10000) document.getElementById(elementId).className = 'ml-3 text-red-600';
                 }
             }, 1000);
         },

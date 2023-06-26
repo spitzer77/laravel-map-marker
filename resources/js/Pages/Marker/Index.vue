@@ -41,7 +41,7 @@
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
 import mapBoxGL from "mapbox-gl";
-import 'mapbox-gl/dist/mapbox-gl.css';
+//import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default {
     name: "Index",

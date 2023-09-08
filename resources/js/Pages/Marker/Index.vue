@@ -57,7 +57,7 @@ export default {
             container: 'map',
             style: 'mapbox://styles/mapbox/streets-v12',
             center: [30.52428, 50.45056],
-            zoom: 9
+            zoom: 9,
         });
     },
 
@@ -120,7 +120,7 @@ export default {
         },
         setMarker(res){
             const marker = new mapBoxGL.Marker({
-                color: "#000000",
+                //color: "#000000",
                 draggable: false,
             })
                 //.setLngLat([res.data.longitude, res.data.latitude])

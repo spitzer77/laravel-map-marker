@@ -1,6 +1,7 @@
 <template>
     <html>
     <head>
+
     </head>
     <body>
         <div class="mx-auto pt-8" style="width:800px;">

@@ -14,11 +14,6 @@ class MarkerController extends Controller
     public function index(){
 
         $threshold = Carbon::now()->subMinutes(10);
-        //$toDel = Marker::where('created_at', '<', $threshold)->delete();
-        //var_dump($toDel);
-
-        //$markers = Marker::all();
-        //$markers = Marker::orderBy('id', 'desc')->get();
         $markers = Marker::latest()->get();
         $markers = MarkerResource::collection($markers)->resolve();
 
@@ -36,6 +31,4 @@ class MarkerController extends Controller
         return MarkerResource::make($marker)->resolve();
         //return redirect()->route('marker.index');
     }
-
-
 }

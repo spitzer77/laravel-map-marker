@@ -11,24 +11,21 @@ use Illuminate\Http\Request;
 
 class MarkerController extends Controller
 {
-    public function index(){
-
-        $threshold = Carbon::now()->subMinutes(10);
+    public function index()
+    {
         $markers = Marker::latest()->get();
         $markers = MarkerResource::collection($markers)->resolve();
 
         return inertia('Marker/Index', compact('markers'));
     }
 
-    public function store(StoreRequest $request){
-
+    public function store(StoreRequest $request)
+    {
         $data = $request->validated();
         $marker = Marker::create($data);
 
-        //event(new StoreMarkerEvent($marker));
         broadcast(new StoreMarkerEvent($marker))->toOthers();
 
         return MarkerResource::make($marker)->resolve();
-        //return redirect()->route('marker.index');
     }
 }

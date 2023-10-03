@@ -12,7 +12,6 @@
                         rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                id="grid-last-name" type="text" placeholder="00.0000000">
                         <p id="error1" class="text-red-500 text-xs italic mb-3"></p>
-<!--                        <p v-if="errors_axios.longitude" class="text-red-500 text-xs italic mb-3">{{ errors_axios.longitude }}</p>-->
                     </div>
 
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
@@ -22,7 +21,6 @@
                                 hover:border-gray-500 rounded py-3 px-4 mb-1 leading-tight focus:outline-none focus:bg-white"
                                 id="grid-first-name" type="text" placeholder="00.0000000">
                         <p id="error2" class="text-red-500 text-xs italic mb-3"></p>
-<!--                        <p v-if="this.errors_axios.latitude" class="text-red-500 text-xs italic mb-3">{{ errors.latitude }}</p>-->
                     </div>
 
                     <div class="w-full md:w-3/4 px-3">
@@ -41,7 +39,6 @@
 <script>
 import MainLayout from "@/Layouts/MainLayout.vue";
 import mapBoxGL from "mapbox-gl";
-//import 'mapbox-gl/dist/mapbox-gl.css';
 
 export default {
     name: "Index",
@@ -66,14 +63,12 @@ export default {
             latitude: null,
             longitude: null,
             interval: 60000, // interval for marker
-            //errors_axios: null
         }
     },
 
     created() {
         window.Echo.channel('store_marker')
             .listen('.store_marker', res => {
-                //this.markers.unshift(res.marker)
                 this.countDown(this.getInterval(), 'time');
                 this.setMarker(res.marker);
             })
@@ -81,7 +76,6 @@ export default {
 
     methods: {
         getInterval(){
-            //return 60000; // millisecond
             return this.interval; // millisecond
         },
         countDown(interval, elementId)
@@ -110,7 +104,6 @@ export default {
 
                     if (distance < 0) {
                         clearInterval(x);
-                        //document.getElementById("time").innerHTML = "EXPIRED";
                         document.getElementById(elementId).innerHTML = "";
                     }
 
@@ -120,10 +113,8 @@ export default {
         },
         setMarker(res){
             const marker = new mapBoxGL.Marker({
-                //color: "#000000",
                 draggable: false,
             })
-                //.setLngLat([res.data.longitude, res.data.latitude])
                 .setLngLat([res.longitude, res.latitude])
                 .addTo(this.map);
 
@@ -132,14 +123,8 @@ export default {
             }, this.getInterval());
         },
         store() {
-            //this.$inertia.post('/markers', {latitude: this.latitude, longitude: this.longitude});
             axios.post('/markers', {latitude: this.latitude, longitude: this.longitude})
                 .then(res => {
-
-                    // for display list of data with current form data, unused in this release
-                    //this.markers.unshift(res.data);
-                    //this.markers.push(res.data);
-
                     this.countDown(this.getInterval(), 'time');
                     this.setMarker(res.data);
 
@@ -148,7 +133,7 @@ export default {
                 })
                 .catch(error => {
                     document.getElementById("time").innerHTML = "";
-                    //console.log(error.response.data.errors.latitude);
+
                     let error_long = error.response.data.errors.longitude;
                     let error_lat = error.response.data.errors.latitude;
 
